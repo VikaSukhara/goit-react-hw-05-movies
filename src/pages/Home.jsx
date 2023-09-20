@@ -9,13 +9,16 @@ export const Home = () => {
     async function getFilms() {
       try {
         const filmsData = await fetchFilms();
-        setFilms([...filmsData.results]);
+
+        setFilms(filmsData.results);
       } catch (error) {
         console.log(error);
       }
     }
+
     getFilms();
-  }, [films, setFilms]);
+  }, []);
+
   return (
     <main>
       <h1 style={{ marginLeft: '50px', marginBottom: '40px' }}>

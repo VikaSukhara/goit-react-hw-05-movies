@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { fetchFilm } from '../components/api';
 import { Wrapper, SingleFilmPhoto, TextWrapper } from './SingleFilm.styled';
 
@@ -18,27 +18,32 @@ export function SingleFilm() {
     }
 
     fetchSingleFilm();
-  }, [params.movieId]);
-  //   console.log("params", params)
-  //   console.log(params.movieId)
-  console.log('fiillllsss', singleFilm);
-  // console.log("fiillllsss", singleFilm.genres)
-  // console.log("fiillllsss",  singleFilm.genres.name)
+  }, [params]);
+
   return (
     <div>
       {singleFilm && (
-        <Wrapper>
+       <div>
+         <Wrapper>
           <SingleFilmPhoto
             src={`https://image.tmdb.org/t/p/original${singleFilm.poster_path}`}
             alt={singleFilm.original_title}
           />
           <TextWrapper>
-            <h2>{singleFilm.original_title}</h2>
+            <h2>{singleFilm.original_title || singleFilm.name}</h2>
+            <p>Rating</p>
             <p>{singleFilm.vote_average}</p>
-            <h3>Overview{singleFilm.overview}</h3>
-            <p>{singleFilm.genres}</p>
+            <h3>Overview</h3>
+            <p>{singleFilm.overview}</p>
+            <p>
+              {singleFilm.genres &&
+                singleFilm.genres.map(genre => genre.name).join(', ')}
+            </p>
           </TextWrapper>
         </Wrapper>
+
+        <Link to='cast'>Cast</Link>
+       </div>
       )}
     </div>
   );
