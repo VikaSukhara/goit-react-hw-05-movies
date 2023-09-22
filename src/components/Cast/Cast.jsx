@@ -13,6 +13,7 @@ const Cast = () => {
     async function getCast() {
       try {
         const func = await fetchCast(param.movieId);
+
         setCast(func.cast);
       } catch (error) {
         console.log(error);
@@ -21,7 +22,7 @@ const Cast = () => {
     }
 
     getCast();
-  }, []);
+  }, [param.movieId]);
 
   return (
     <div>
@@ -50,11 +51,3 @@ const Cast = () => {
 
 export default Cast;
 
-// <img src={
-//  movieData.poster_path ?
-//  [<https://image.tmdb.org/t/p/w500/${movieData.poster_path}>](<https://image.tmdb.org/t/p/w500/$%7BmovieData.poster_path%7D>)
-//  : defaultImg
-// }
-// width={250}
-// alt="poster"
-// />

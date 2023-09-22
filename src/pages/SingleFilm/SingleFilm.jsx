@@ -75,16 +75,15 @@ function SingleFilm() {
           >
             <li>
               <StyledLink to="cast">
-                <h2>Cast</h2>
+                Cast
               </StyledLink>
             </li>
             <li>
-              <StyledLink to="review">
-                <h2>Review</h2>
+              <StyledLink to="review">Review
               </StyledLink>
             </li>
           </ul>
-          <Suspense >
+          <Suspense  >
             <Outlet />
           </Suspense>
         </div>
