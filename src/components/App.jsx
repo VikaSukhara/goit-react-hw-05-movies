@@ -1,28 +1,25 @@
-import { Route, Routes, Link } from 'react-router-dom';
-import { Home } from '../pages/Home';
-import { Movie } from '../pages/Movie';
-import { SingleFilm } from 'pages/SingleFilm';
-import { Cast } from './Cast';
+import { lazy } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { Layout } from './Layout/Layout';
+
+const Home = lazy(() => import('../pages/Home'));
+const Movie = lazy(() => import('../pages/Movie/Movie'));
+const SingleFilm = lazy(() => import('../pages/SingleFilm/SingleFilm'));
+const Cast = lazy(() => import('./Cast/Cast'));
+const Review = lazy(() => import('./Review/Review'));
 
 export const App = () => {
   return (
     <div>
-      <nav>
-        <li>
-          <Link to="/trending/get-trending">Home</Link>
-        </li>
-        <li>
-          <Link to="/trending/movies">Movie</Link>
-        </li>
-      </nav>
-
       <Routes>
-        <Route path="/trending/get-trending" element={<Home />}></Route>
-        <Route path="/trending/movies" element={<Movie />}></Route>
-        <Route path="/movies/:movieId" element={<SingleFilm />}>
-        <Route path="movies/:movieId/cast" element={<Cast />}></Route>
+        <Route path="/" element={<Layout />}>
+          <Route path="/" index element={<Home />}></Route>
+          <Route path="movies" element={<Movie />}></Route>
+          <Route path="/movies/:movieId" element={<SingleFilm />}>
+            <Route path="cast" element={<Cast />}></Route>
+            <Route path="review" element={<Review />}></Route>
+          </Route>
         </Route>
-        
       </Routes>
     </div>
   );

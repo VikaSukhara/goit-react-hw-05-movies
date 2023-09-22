@@ -1,0 +1,126 @@
+import styled from 'styled-components';
+
+export const Form = styled.form`
+  margin-left: 70px;
+  margin-top: 40px;
+`;
+
+export const Input = styled.input`
+  position: relative;
+  border: 2px solid #62b9ef;
+  height: 30px;
+  background: #d6efff;
+  width: 180px;
+  border-radius: 50px;
+  padding-left: 31px;
+  padding-right: 11px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font-size: 13px;
+  color: black;
+  position: absolute;
+
+  &:active,
+  &:hover,
+  &:focus {
+    outline: 0;
+    outline-offset: 0;
+  }
+  &:focus {
+    border-color: #324dff;
+  }
+  &:hover {
+    border-color: #324dff;
+  }
+
+  /* ::placeholder  {
+    color: red;
+    font-size: 1.2em;
+    font-style: italic;
+  } */
+`;
+
+export const Button = styled.button`
+  position: relative;
+  margin-top: 10px;
+  margin-left: 185px;
+  background-color: transparent;
+  border: none;
+  color: #324dff;
+
+  &:hover {
+    color: #324dff;
+  }
+`;
+
+export const FilmsList = styled.ul`
+  margin-top: 50px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 60px;
+`;
+
+export const FilmItem = styled.li`
+  position: relative;
+
+  list-style: none;
+  width: 395px;
+  margin-bottom: 20px;
+  transition-property: transform;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    transform: scale(1.02);
+  }
+`;
+
+export const FilmPhoto = styled.img`
+  width: 395px;
+  height: 574px;
+  margin-bottom: 12px;
+  position: relative;
+  border-radius: 5px;
+`;
+
+export const FilmTitle = styled.h2`
+  margin-bottom: 50px;
+`;
+
+export const FilmButton = styled.button`
+  width: 40%;
+  height: 30px;
+  color: #fff;
+  cursor: pointer;
+  background-color: #0039e6;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s linear;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  &:hover {
+    background-color: #0000ff;
+  }
+`;
+
+export const FilmProposalButton = styled.button`
+  width: 40%;
+  height: 30px;
+  color: #fff;
+  cursor: pointer;
+  background-color: #0039e6;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s linear;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  &:hover {
+    background-color: #0000ff;
+  }
+`;
