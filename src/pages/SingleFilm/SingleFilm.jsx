@@ -35,7 +35,7 @@ function SingleFilm() {
     }
 
     fetchSingleFilm();
-  }, []);
+  }, [params.movieId]);
 
   return (
     <div>
