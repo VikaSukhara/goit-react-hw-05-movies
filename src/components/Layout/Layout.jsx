@@ -15,11 +15,11 @@ export const Layout = () => {
             </li>
           </StyledNav>
       </Header>
-
-      <main>
-        <Suspense>
+      <Suspense  >
           <Outlet />
         </Suspense>
+      <main>
+
       </main>
     </div>
   );

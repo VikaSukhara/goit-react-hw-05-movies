@@ -35,7 +35,7 @@ function SingleFilm() {
     }
 
     fetchSingleFilm();
-  }, [params]);
+  }, []);
 
   return (
     <div>
@@ -74,16 +74,13 @@ function SingleFilm() {
             }}
           >
             <li>
-              <StyledLink to="cast">
-                Cast
-              </StyledLink>
+              <StyledLink to="cast">Cast</StyledLink>
             </li>
             <li>
-              <StyledLink to="review">Review
-              </StyledLink>
+              <StyledLink to="review">Review</StyledLink>
             </li>
           </ul>
-          <Suspense  >
+          <Suspense>
             <Outlet />
           </Suspense>
         </div>

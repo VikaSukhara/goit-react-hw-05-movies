@@ -2,19 +2,23 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchReviews } from '../api';
 import { ReviewItem, ReviewTitle, ReviewP } from './Review.styled';
+import { Loader } from 'components/Loader';
 
 const Review = () => {
-  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [reviews, setReviews] = useState();
   const param = useParams();
 
   useEffect(() => {
     async function getReviews() {
       try {
+        setLoading(true);
         const reviewsData = await fetchReviews(param.movieId);
         setReviews(reviewsData.results);
       } catch (error) {
         console.log(error);
       } finally {
+        setLoading(false);
       }
     }
 
@@ -23,8 +27,8 @@ const Review = () => {
 
   return (
     <div>
-      {!reviews.length && <h2>There aren't any reviews for this movie</h2>}
-      {reviews.length > 0 && (
+      {loading && <Loader />}
+      {reviews && (
         <ul style={{ marginLeft: '40px' }}>
           {reviews.map(review => {
             return (
@@ -36,6 +40,10 @@ const Review = () => {
             );
           })}
         </ul>
+      )}
+
+      {reviews && reviews.length === 0 && (
+        <h2>There aren't any reviews for this movie</h2>
       )}
     </div>
   );
