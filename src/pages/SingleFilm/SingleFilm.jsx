@@ -22,10 +22,14 @@ function SingleFilm() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     async function fetchSingleFilm() {
       try {
         setLoading(true);
-        const fetchedSingleFilm = await fetchFilm(params.movieId);
+        const fetchedSingleFilm = await fetchFilm(params.movieId, {
+          signal: controller.signal,
+        });
         setSingleFilm(fetchedSingleFilm);
       } catch (error) {
         console.log(error);
@@ -33,8 +37,9 @@ function SingleFilm() {
         setLoading(false);
       }
     }
-
+    
     fetchSingleFilm();
+    return () => controller.abort();
   }, [params.movieId]);
 
   return (
