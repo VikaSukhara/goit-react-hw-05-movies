@@ -1,6 +1,6 @@
 import { Homemarkup } from 'components/Homemarkup/Homemarkup';
 import { fetchFilms } from '../components/api';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Loader } from 'components/Loader';
 
 const Home = () => {
