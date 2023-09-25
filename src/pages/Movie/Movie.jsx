@@ -1,22 +1,12 @@
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { fetchQuery } from '../../components/api';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { BsSearch } from 'react-icons/bs';
 import { Loader } from 'components/Loader';
 import toast, { Toaster } from 'react-hot-toast';
 import { Homemarkup } from 'components/Homemarkup/Homemarkup';
 
-import {
-  // FilmsList,
-  // FilmItem,
-  // FilmPhoto,
-  // FilmTitle,
-  Form,
-  Input,
-  Button,
-  // FilmProposalButton,
-} from './Movie.styled';
+import { Form, Input, Button } from './Movie.styled';
 
 //інпут, запит про фільми за назвою, рендер всіх фільмів
 

@@ -4,7 +4,7 @@ import { Layout } from './Layout/Layout';
 
 const Home = lazy(() => import('../pages/Home'));
 const Movie = lazy(() => import('../pages/Movie/Movie'));
-const SingleFilm = lazy(() => import('../pages/SingleFilm/SingleFilm'));
+const SingleFilm = lazy(() => import('../pages/OneMovie/OneMovie'));
 const Cast = lazy(() => import('./Cast/Cast'));
 const Review = lazy(() => import('./Review/Review'));
 
