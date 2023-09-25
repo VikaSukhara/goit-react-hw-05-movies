@@ -5,37 +5,39 @@ import { useLocation } from 'react-router-dom';
 import { BsSearch } from 'react-icons/bs';
 import { Loader } from 'components/Loader';
 import toast, { Toaster } from 'react-hot-toast';
+import { Homemarkup } from 'components/Homemarkup/Homemarkup';
 
 import {
-  FilmsList,
-  FilmItem,
-  FilmPhoto,
-  FilmTitle,
+  // FilmsList,
+  // FilmItem,
+  // FilmPhoto,
+  // FilmTitle,
   Form,
   Input,
   Button,
-  FilmProposalButton,
+  // FilmProposalButton,
 } from './Movie.styled';
+
+//інпут, запит про фільми за назвою, рендер всіх фільмів
+
 const Movie = () => {
   const [searchParams, setSearchParams] = useSearchParams(); //new data in url
   const searchedMovie = searchParams.get('query') ?? ''; // it's data of searchParams
   const [movies, setMovies] = useState(''); //it's found film from fetch
   const [loading, setLoading] = useState(false);
   const [searchValue, setSearchValue] = useState(searchedMovie);
-  const defaultImg =
-    'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
-
-  const location = useLocation();
 
   useEffect(() => {
-    console.log(searchedMovie);
+    const controller = new AbortController();
     if (searchedMovie === ' ') {
       return;
     }
     async function getQueryMovie() {
       try {
         setLoading(true);
-        const fetchedMovies = await fetchQuery(searchedMovie);
+        const fetchedMovies = await fetchQuery(searchedMovie, {
+          signal: controller.signal,
+        });
         setMovies(fetchedMovies.results);
         if (fetchedMovies.results.length === 0 && !searchedMovie === ' ') {
           toast.error("There aren't any films. Try again!");
@@ -49,6 +51,7 @@ const Movie = () => {
     }
 
     getQueryMovie();
+    return () => controller.abort();
   }, [searchedMovie]);
 
   //click button -> change state -> useEffect
@@ -88,30 +91,7 @@ const Movie = () => {
 
       {loading && <Loader />}
 
-      {movies.length > 0 && (
-        <FilmsList>
-          {movies.map(movie => {
-            return (
-              <FilmItem key={movie.id}>
-                <Link to={`/movies/${movie.id}`} state={{ from: location }}>
-                  <FilmPhoto
-                    src={
-                      movie.poster_path
-                        ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
-                        : defaultImg
-                    }
-                    alt={movie.original_title}
-                  />
-                  <FilmTitle>{movie.original_title || movie.name}</FilmTitle>
-                  <FilmProposalButton type="button">
-                    Read More
-                  </FilmProposalButton>
-                </Link>
-              </FilmItem>
-            );
-          })}
-        </FilmsList>
-      )}
+      {movies.length > 0 && <Homemarkup films={movies} />}
       <Toaster position="top-right" reverseOrder={false} />
     </div>
   );

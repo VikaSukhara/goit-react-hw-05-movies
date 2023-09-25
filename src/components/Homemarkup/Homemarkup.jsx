@@ -8,6 +8,8 @@ import {
 } from './Homemarkup.styled';
 import { useLocation } from 'react-router-dom';
 
+//розмітка всіх фільмів на сторінці Home
+
 export const Homemarkup = ({ films }) => {
   const location = useLocation();
 

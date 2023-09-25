@@ -12,10 +12,13 @@ const Cast = () => {
   const defaultImg =
     'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
   useEffect(() => {
+    const controller = new AbortController();
     async function getCast() {
       try {
         setLoading(true);
-        const func = await fetchCast(param.movieId);
+        const func = await fetchCast(param.movieId, {
+          signal: controller.signal,
+        });
 
         setCast(func.cast);
       } catch (error) {
@@ -26,6 +29,7 @@ const Cast = () => {
     }
 
     getCast();
+    return () => controller.abort();
   }, [param.movieId]);
 
   return (
@@ -55,4 +59,3 @@ const Cast = () => {
 };
 
 export default Cast;
-

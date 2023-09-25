@@ -14,6 +14,8 @@ import { useLocation } from 'react-router-dom';
 import { Suspense } from 'react';
 import { Loader } from 'components/Loader';
 
+// запит на конкретний фільм, розмітка одного фільму, ссилки на лінки акторів та відгуків
+
 function SingleFilm() {
   const params = useParams();
   const [singleFilm, setSingleFilm] = useState(null);
@@ -37,7 +39,7 @@ function SingleFilm() {
         setLoading(false);
       }
     }
-    
+
     fetchSingleFilm();
     return () => controller.abort();
   }, [params.movieId]);

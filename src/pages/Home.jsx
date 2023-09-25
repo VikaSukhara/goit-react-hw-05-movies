@@ -3,6 +3,8 @@ import { fetchFilms } from '../components/api';
 import { useEffect, useState } from 'react';
 import { Loader } from 'components/Loader';
 
+// сторінка Home, в якій відбувається запис фетч та  рендериться розмітка компонента Home
+
 const Home = () => {
   const [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(false);
